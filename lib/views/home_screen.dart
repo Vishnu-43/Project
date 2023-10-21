@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:deal_app_test/views/product_details.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
+
   const HomeScreen({super.key});
 
   @override
@@ -11,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   CarouselController carouselController = CarouselController();
   int currentIndex = 0;
   final List<String> imgList = [
@@ -146,43 +149,53 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: EdgeInsets.all(0),
                       itemCount: 24,
                       itemBuilder: (context, index) {
-                        return Container(
-                            // padding: const EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                              border: Border.all(
-                                color: Color(0x91595959),
-                                width: 2.0,
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ProductDetails(),
                               ),
-                            ),
-                            child: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: Container(
-                                      height: 95,
-                                      width: 140,
-                                      // color: Colors.red,
-                                      child: Center(
-                                        child: Image(
-                                          fit: BoxFit.cover,
-                                            image: AssetImage(
-                                                'asset/images/acerlap.png')),
+                            );
+                          },
+
+                          child: Container(
+                              // padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                                border: Border.all(
+                                  color: Color(0x91595959),
+                                  width: 2.0,
+                                ),
+                              ),
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(2.0),
+                                      child: Container(
+                                        height: 85,
+                                        width: 140,
+                                        // color: Colors.red,
+                                        child: const Center(
+                                          child: Image(
+                                            fit: BoxFit.cover,
+                                              image: AssetImage(
+                                                  'asset/images/acerlap.png')),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  // SizedBox(height: 7,),
-                                  ListTile(
-                                    title: Text("Lenovo laptop"),
-                                    subtitle: Text("₹3200 only"),
-                                  )
-                                ],
-                              ),
-                            ));
+                                    // SizedBox(height: 7,),
+                                    ListTile(
+                                      title: Text("Lenovo laptop"),
+                                      subtitle: Text("₹3200 only"),
+                                    )
+                                  ],
+                                ),
+                              )),
+                        );
                       },
                     ),
                   ))

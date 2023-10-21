@@ -43,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Align(
                   alignment: Alignment(0, -0.88),
                   child: Container(
-                    height: 165,
+                    height: 155,
                     width: 350,
                     child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -79,8 +79,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   alignment: Alignment(0, 0),
                   child: Container(
                       // color: Colors.red,
-                      height: 350,
-                      width: 440,
+                      height: 450,
+                      width: 340,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -181,7 +181,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               },
                               style: ButtonStyle(
                                   minimumSize: MaterialStatePropertyAll(
-                                      Size(size.width, 46)),
+                                      Size(size.width, 56)),
                                   shape: MaterialStatePropertyAll(
                                       RoundedRectangleBorder(
                                           borderRadius:
