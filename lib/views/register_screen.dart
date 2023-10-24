@@ -13,6 +13,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
+
   String email = '';
   String password = '';
   String fullname = '';
@@ -38,7 +39,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               // padding: EdgeInsets.only(top: 65, bottom: 20, left: 20, right: 20),
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      fit: BoxFit.cover, image: AssetImage('asset/images/Welcome Screen .png'))),
+                      fit: BoxFit.cover,
+                      image: AssetImage('asset/images/Welcome Screen .png'))),
               child: Stack(children: [
                 Align(
                   alignment: Alignment(0, -0.88),
@@ -93,8 +95,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             },
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return "Name should not be empty";
+                                return 'Please enter a name';
+                              } else if (value.contains(RegExp(r'[0-9]'))) {
+                                return 'Name cannot contain numbers';
+                              } else if (value.contains(RegExp(r'\s{2,}'))) {
+                                return 'Name cannot have consecutive white spaces';
+                              } else if (value
+                                  .contains(RegExp(r'[^a-zA-Z\s]'))) {
+                                return 'Name cannot contain special characters';
                               }
+                              return null;
                             },
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
@@ -119,7 +129,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "Please enter your email";
-                              } else if (!value.contains("@gmail")) {
+                              } else if (!value.contains("@")) {
                                 return "please enter a valid email";
                               } else {
                                 return null;
@@ -146,21 +156,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               });
                             },
                             validator: (value) {
-                              RegExp regex = RegExp(
-                                  r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-                              if (value!.isEmpty) {
-                                return "Please enter your password";
-                              } else {
-                                if (!regex.hasMatch(value)) {
-                                  return 'Enter valid password';
-                                } else {
-                                  return null;
-                                }
+                              if(value!.isEmpty){
+                                return 'Please enter a password';
                               }
+                              else if(!value.contains(RegExp(r'[0-9]'))){
+                                return 'Password must contain at least one number';
+                              }
+                              else if(!value.contains(RegExp(r'[a-z]'))){
+                                return 'Please enter small letters';
+                              }
+                              else if(!value.contains(RegExp(r'[A-Z]'))){
+                                return "Please enter  capital letters";
+                              }
+                              else if(!value.contains(RegExp(r'[!@#\$%^&*(),.?":{}|<>]'))){
+                                return 'Password contain at least one special charcter ';
+                              }
+                              else if (value.length != 8) {
+                                return 'Password must be 8 characters long';
+                              }
+                              return null;
+
+                              //   RegExp regex = RegExp(
+                              //       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                              //   if (value!.isEmpty) {
+                              //     return "Please enter your password";
+                              //   } else {
+                              //     if (!regex.hasMatch(value)) {
+                              //       return 'Enter valid password';
+                              //     } else {
+                              //       return null;
+                              //     }
+                              //   }
+                              // },
                             },
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
-                                hintText: "Enter the password",
+                                hintText: "Enter your password",
                                 label: Text(
                                   "Password",
                                   style: TextStyle(
